@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "noticias",
+  "info": {
+    "name": "Noticias"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "texto": {
+      "type": "richtext",
+      "required": true
+    },
+    "titulo": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
