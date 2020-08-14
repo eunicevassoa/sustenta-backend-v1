@@ -9,7 +9,7 @@ module.exports = ({ env }) => ({
         port: env('DATABASE_PORT', 5432),
         username: env('DATABASE_USERNAME', 'root'),
         password: env('DATABASE_PASSWORD', ''),
-        database: env('DATABASE_NAME', "strapi"),
+        database: env('DATABASE_NAME', "sustenta"),
         ssl: env.bool('DATABASE_SSL', true),
         schema: "public",
       },
