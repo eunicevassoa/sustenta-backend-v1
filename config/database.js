@@ -15,6 +15,7 @@ module.exports = ({ env }) => ({
       },
       options: {
         debug: false,
+        "ssl": false
       },
     },
   },
