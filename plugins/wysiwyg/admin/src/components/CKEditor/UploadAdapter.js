@@ -1,5 +1,5 @@
 import { auth } from 'strapi-helper-plugin';
-import { axios } from 'axios'
+import axios from 'axios'
 
 export default class UploadAdapter {
     constructor( loader ) {
@@ -7,50 +7,32 @@ export default class UploadAdapter {
       this.loader = loader;
     }
   
-    upload() {
+    async upload() {
+      let token =  auth.getToken()
+      console.log(token)
       const data = new FormData();
       data.append('typeOption', 'upload_image');
-      data.append('file', this.loader.file);
-  
-      return new Promise((resolve, reject) => {
-        axios.post(
-          `${strapi.backendURL}/upload`,
-          {
-            headers: {
-              'Authorization': "Bearer " + auth.getToken()
-            }
-          },
-          data,
-          //withCredentials: true
-        )
-        .then((response) => {
-            console.log(res)
-            var resData = res.data;
-            resData.default = resData.url;
-            resolve(resData);
-        })
-        .catch((error) => {
-            console.log(error)
-            reject(error)
-        })
-        /*axios({
-          url: `${strapi.backendURL}/upload`,
-          method: 'post',
-          data,
+      data.append('files', this.loader.file)
+      await axios.post(
+        `${strapi.backendURL}/upload`,
+        data,
+        {
           headers: {
-            'Authorization': "Bearer " + auth.getToken()
-          },
-          withCredentials: true
-        }).then(res => {
-          console.log(res)
-          var resData = res.data;
+            'Authorization': "Bearer " + token,
+            //'Content-Type': 'multipart/form-data'
+          }
+        },
+      )
+      .then((response) => {
+          console.log(token)
+          var resData = response.data;
           resData.default = resData.url;
-          resolve(resData);
-        }).catch(error => {
-          console.log(error)
-          reject(error)
-        });*/
-      });
+      })
+      .catch((error) => {
+          console.log(error.message)
+      })
+
+      return 'test'
     }
   
     abort() {

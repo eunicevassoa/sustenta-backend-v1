@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
-//import { auth } from 'strapi-helper-plugin';
+import { auth } from 'strapi-helper-plugin';
 import UploadAdapter from './UploadAdapter'
 
 const Wrapper = styled.div`
@@ -16,12 +16,6 @@ const Wrapper = styled.div`
 `;
 
 const configuration = {
-  /*ckfinder: {
-    uploadUrl: `${strapi.backendURL}/upload`,
-    headers: {
-      Authorization: "Bearer " + auth.getToken()
-    }
-  },*/
   toolbar: [
     'heading',
     '|',
