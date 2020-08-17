@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "indicadores",
+  "info": {
+    "name": "Indicadores"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "retornarGeometria": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "grupos_de_indicadore": {
+      "model": "grupos-de-indicadores"
+    },
+    "where": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/grupos-de-indicadores",
+      "handler": "grupos-de-indicadores.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/grupos-de-indicadores/count",
+      "handler": "grupos-de-indicadores.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/grupos-de-indicadores/:id",
+      "handler": "grupos-de-indicadores.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/grupos-de-indicadores",
+      "handler": "grupos-de-indicadores.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/grupos-de-indicadores/:id",
+      "handler": "grupos-de-indicadores.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/grupos-de-indicadores/:id",
+      "handler": "grupos-de-indicadores.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

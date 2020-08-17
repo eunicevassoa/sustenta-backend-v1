@@ -13,6 +13,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^21.0.0",
     "@ckeditor/ckeditor5-react": "^2.1.0",
+    "@martinkronstad/ckeditor5-strapi-upload-adapter": "^18.1.0",
     "knex": "<0.20.0",
     "pg": "^7.4.3",
     "sqlite3": "latest",

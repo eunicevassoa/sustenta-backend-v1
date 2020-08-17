@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "grupos_de_indicadores",
+  "info": {
+    "name": "Grupos de Indicadores"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "codigoDeServico": {
+      "type": "string",
+      "required": true
+    },
+    "server": {
+      "type": "enumeration",
+      "enum": [
+        "FeatureServer"
+      ]
+    }
+  }
+}

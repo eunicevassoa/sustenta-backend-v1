@@ -16,6 +16,19 @@
     "titulo": {
       "type": "string",
       "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "capa": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
     }
   }
 }

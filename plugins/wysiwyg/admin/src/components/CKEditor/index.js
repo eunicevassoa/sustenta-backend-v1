@@ -5,6 +5,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 import { auth } from 'strapi-helper-plugin';
 import UploadAdapter from './UploadAdapter'
+import StrapiUploadAdapter from '@martinkronstad/ckeditor5-strapi-upload-adapter'; 
+
 
 const Wrapper = styled.div`
   .ck-editor__main {
@@ -15,7 +17,18 @@ const Wrapper = styled.div`
   }
 `;
 
+let token =  auth.getToken()
 const configuration = {
+  extraPlugins: [
+    StrapiUploadAdapter
+  ],
+  strapiUploadAdapter: {
+    uploadUrl: `${strapi.backendURL}/upload`,
+    absUrl: `${strapi.backendURL}`,
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  },
   toolbar: [
     'heading',
     '|',
@@ -25,16 +38,54 @@ const configuration = {
     'bulletedList',
     'numberedList',
     '|',
-    'indent',
-    'outdent',
-    '|',
     'imageUpload',
+    'mediaEmbed',
     'blockQuote',
     'insertTable',
-    'mediaEmbed',
     'undo',
     'redo',
   ],
+  image: {
+    toolbar: [
+        'imageStyle:full',
+        'imageStyle:side',
+        '|',
+        'imageTextAlternative'
+    ],
+    styles: [
+        'full',
+        'side'
+    ]
+  }
+  /*image: {
+    styles: [
+        'alignLeft', 'alignCenter', 'alignRight'
+    ],
+    resizeOptions: [
+        {
+            name: 'imageResize:original',
+            label: 'Original',
+            value: null
+        },
+        {
+            name: 'imageResize:50',
+            label: '50%',
+            value: '50'
+        },
+        {
+            name: 'imageResize:75',
+            label: '75%',
+            value: '75'
+        }
+    ],
+    toolbar: [
+        'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+        '|',
+        //'imageResize',
+        '|',
+        'imageTextAlternative'
+    ]
+  }*/
 };
 
 const Editor = ({ onChange, name, value }) => {
@@ -45,14 +96,8 @@ const Editor = ({ onChange, name, value }) => {
         config={configuration}
         data={value}
         onChange={(event, editor) => {
-          console.log('Changed')
           const data = editor.getData();
           onChange({ target: { name, value: data } });
-        }}
-        onInit={ editor => {
-          editor.plugins.get( 'FileRepository' ).createUploadAdapter = function( loader ) {
-            return new UploadAdapter( loader );
-          };
         }}
       />
     </Wrapper>
